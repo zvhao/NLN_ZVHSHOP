@@ -2,6 +2,12 @@
 
 class Admin extends Controller
 {
+    private $products;
+    private $categories;
+    private $users;
+    private $cart;
+    private $bills;
+    
     function __construct()
     {
         $this->users = $this->model('UserModel');

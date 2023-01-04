@@ -5,6 +5,8 @@ class checkOut extends Controller
 	private $products;
 	private $categories;
 	private $bills;
+	private $user;
+	private $cart;
 
 	function __construct()
 	{

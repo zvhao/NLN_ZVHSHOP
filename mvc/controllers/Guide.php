@@ -2,6 +2,7 @@
 
 class Guide extends Controller
 {
+	private $categories;
 	function __construct()
 	{
 		 $this->categories = $this->model('CategoryModel');

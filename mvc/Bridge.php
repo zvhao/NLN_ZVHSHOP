@@ -30,4 +30,5 @@ require_once './mvc/helper/getStatusBill.php';
 require_once './mvc/helper/getPaging.php';
 require_once './mvc/helper/getMethodPayment.php';
 require_once './mvc/helper/getRatingStar.php';
+require_once './mvc/helper/avatarHeader.php';
 ?>

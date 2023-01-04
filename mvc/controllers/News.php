@@ -2,6 +2,7 @@
 
 class News extends Controller
 {
+    private $cart;
     function __construct()
     {
 		$this->cart = $this->model('CartModel');

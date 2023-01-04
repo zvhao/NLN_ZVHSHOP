@@ -3,7 +3,10 @@
 class Auth extends Controller
 {
 
+    private $products;
+    private $categories;
     private $users;
+    private $cart;
 
     function __construct()
     {
@@ -189,6 +192,6 @@ class Auth extends Controller
     function logout()
     {
         unset($_SESSION['user']);
-        header('Location: ' . _WEB_ROOT);
+        header('Location: ' . _WEB_ROOT . '/Auth/login');
     }
 }

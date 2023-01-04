@@ -3,6 +3,8 @@ class User extends Controller
 {
     private $group;
     private $user;
+    private $categories;
+    private $cart;
     public function __construct()
     {
         $this->group = $this->model("GroupUserModel");

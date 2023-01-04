@@ -2,6 +2,9 @@
 
 class Introduce extends Controller
 {
+    private $products;
+    private $categories;
+    private $cart;
     function __construct()
     {
         $this->products = $this->model('ProductModel');

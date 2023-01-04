@@ -2,7 +2,12 @@
 class Bill extends Controller
 {
 
-	private $bills;
+	private $users;
+	private $products;
+    private $categories;
+    private $cart;
+    private $bills;
+    private $comment;
 	function __construct()
 	{
 		$this->users = $this->model('UserModel');
@@ -118,6 +123,7 @@ class Bill extends Controller
 
 	public function detail_bill($id) {
 
+		$categories = $this->categories->getAllCl();
 		$bill = $this->bills->SelectOneBill($id);
 		$detailBill = $this->bills->getDetailBill($id);
 		// show_array($detailBill);
@@ -128,6 +134,8 @@ class Bill extends Controller
 			'js' => ['main'],
 			'bill' => $bill,
 			'detailBill' => $detailBill,
+			'categories' => $categories,
+
 		]);
 	}
 
@@ -219,7 +227,7 @@ class Bill extends Controller
 		$vnp_TmnCode = "T8F0OXZG"; //Mã website tại VNPAY 
 		$vnp_HashSecret = "CDLYRIZCDZXVAZVTNDSTUBXVFBOXIEOJ"; //Chuỗi bí mật
 
-		$vnp_TxnRef = rand(); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+		$vnp_TxnRef = random_int(0, 9999999999); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
 		$vnp_OrderInfo = 'Thanh toán đơn hàng test';
 		$vnp_OrderType = 'billpayment';
 		$vnp_Amount =   (float)$sum * 100;

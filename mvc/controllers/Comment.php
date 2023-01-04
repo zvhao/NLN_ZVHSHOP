@@ -2,6 +2,9 @@
 
 class Comment extends Controller
 {
+	private $products;
+    private $comment;
+
 	function __construct()
 	{
 		$this->comment = $this->model('CommentModel');
@@ -18,6 +21,7 @@ class Comment extends Controller
 			$comment = $_POST['comment'];
 			$rating = $_POST['stars'];
 			$created_at = date("Y-m-d H:i:s");
+			// show_array($_POST);
 
 			$idComment = $this->comment->insertComment($id_user, $id_pro, $comment, $rating, $created_at);
 
@@ -30,7 +34,9 @@ class Comment extends Controller
 			// show_array($avgTaring);
 			
 			$this->products->updateRating($id_pro, round($avgTaring, 1));
-			redirectTo("detailproduct/product/$id_pro");
+			$comments = $this->comment->getAllComment($id_pro);
+			print_r(json_encode($comments));
+			// redirectTo("detailproduct/product/$id_pro");
 		}
 	}
 }

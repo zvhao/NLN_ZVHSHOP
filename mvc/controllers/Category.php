@@ -2,7 +2,9 @@
 class Category extends Controller
 {
 
+    
     private $categories;
+    private $products;
     public function __construct()
     {
         $this->categories = $this->model('CategoryModel');

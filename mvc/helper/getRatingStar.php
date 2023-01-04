@@ -23,3 +23,20 @@ function getRatingStarRound($rating)
 	}
 	
 }
+
+function evaluate() {
+	for ($i=1; $i <= 5; $i++) {
+		if($i == 5) $check = 'checked';
+		else $check = '';
+		echo "<label> <input type='radio' name='stars' class='d-none' value='$i' $check />";
+		for ($j=1; $j <= $i; $j++) { 
+			echo "<i class='icon fa-solid fa-star'></i>";
+		}
+		echo "</label>";
+	}
+}
+
+							
+                                
+
+                            

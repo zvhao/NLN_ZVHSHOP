@@ -4,6 +4,7 @@ class Product extends Controller
 
     private $products;
     private $categories;
+    private $cart;
 
     function __construct()
     {
@@ -270,7 +271,7 @@ class Product extends Controller
         if (isset($filesName) && !empty($filesName)) {
             $date = new DateTimeImmutable();
             $fileNameArr = explode(".", $filesName);
-            $name = $date->getTimestamp() . rand();
+            $name = $date->getTimestamp() . random_int(100000000, 9999999999);
             $target_file = _UPLOAD . '/product/' .  basename($name . "." . $fileNameArr[1]);
 
             if (move_uploaded_file($tmpName, $target_file)) {

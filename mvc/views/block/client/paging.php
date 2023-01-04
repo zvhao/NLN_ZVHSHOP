@@ -8,7 +8,7 @@ if ($count_product > $num_per_page) {
 			if (isset($_GET['page']) && $_GET['page'] != 1) {
 			?>
 				<li class="page-item">
-					<a class="page-link px-4 outline-main" href="
+					<a class="page-link px-4 outline-main text-color-main" href="
 							  <?php echo _WEB_ROOT . '/product/show_product?';
 								if (!empty($_GET['cate'])) {
 									echo 'cate=' . $_GET['cate'];
@@ -26,7 +26,7 @@ if ($count_product > $num_per_page) {
 			}
 			for ($i = 1; $i <= $num_page; $i++) {
 			?>
-				<li class="page-item"><a class="page-link px-4 outline-main 
+				<li class="page-item"><a class="page-link px-4 outline-main text-color-main 
 						 <?php if ((isset($_GET['page']) && $_GET['page'] == $i) || (!isset($_GET['page']) && $num_page > 1 && $i == 1)) echo ' active-cate' ?> " href="
 						 <?php echo _WEB_ROOT . '/product/show_product?';
 							if (!empty($_GET['cate'])) {
@@ -45,7 +45,7 @@ if ($count_product > $num_per_page) {
 			if ((!isset($_GET['page']) && $num_page > 1) || (isset($_GET['page']) && $num_page > 1 && $_GET['page'] < $num_page)) {
 			?>
 				<li class="page-item">
-					<a class="page-link px-4 outline-main" href="
+					<a class="page-link px-4 outline-main text-color-main" href="
 							  <?php echo _WEB_ROOT . '/product/show_product?';
 								if (!empty($_GET['cate'])) {
 									echo 'cate=' . $_GET['cate'];

@@ -248,39 +248,4 @@ if (msg) {
     }, 3000)
 }
 
-// Thu gọn detail_product
-const contentDetail = document.querySelector(".desc-short-product");
-const btn1 = document.getElementById("btn1")
-const btn2 = document.getElementById("btn2")
-// console.log(contentDetail);
-var offset = contentDetail.offsetHeight;
-
-// console.log(offset);
-
-if (offset > 300) {
-    contentDetail.style.height = '300px';
-    btn1.style.display = 'none'
-    btn2.style.display = ''
-
-} else {
-    btn1.style.display = 'none'
-    btn2.style.display = 'none'
-}
-
-btn1.onclick = function () {
-    contentDetail.style.height = '300px';
-    btn1.style.display = 'none'
-    btn2.style.display = ''
-
-};
-btn2.onclick = function () {
-    contentDetail.style.height = 'auto';
-    btn1.style.display = ''
-    btn2.style.display = 'none'
-};
-
-
-
-
-
 

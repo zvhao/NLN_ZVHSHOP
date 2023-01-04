@@ -2,6 +2,12 @@
 
 class Cart extends Controller
 {
+    private $users;
+    private $products;
+    private $categories;
+    private $cart;
+    private $bills;
+    private $comment;
     function __construct()
     {
         $this->products = $this->model('ProductModel');
@@ -13,7 +19,7 @@ class Cart extends Controller
     public function index()
     {
         $infoCart = [];
-        $detailCart= [];
+        $detailCart = [];
         if (isset($_SESSION['user']) && $_SESSION['user']['id']) {
             $id_user = $_SESSION['user']['id'];
             $detailCart = $this->cart->getAllDetailCart($id_user);
@@ -34,7 +40,7 @@ class Cart extends Controller
             array_push($productNew, $item);
         }
 
-        
+
 
         // show_array($_SESSION);
 
@@ -42,7 +48,7 @@ class Cart extends Controller
             'page' => 'cart',
             'title' => 'Giỏ hàng',
             'css' => ['base', 'main'],
-            'js' => ['main'],
+            'js' => ['main', 'cart'],
             'categories' => $categories,
             'products' => $productNew,
             'infoCart' => $infoCart,
@@ -60,9 +66,9 @@ class Cart extends Controller
             $id = $_GET['id'];
         }
 
-        if (isset($_POST['num_order']) && isset($_SESSION['cart']['buy'][$id])) {
+        if (isset($_POST['add_to_cart']) && isset($_SESSION['cart']['buy'][$id])) {
             $qty = $_POST['num_order'] + $_SESSION['cart']['buy'][$id]['qty'];
-        } else if (isset($_POST['num_order'])) {
+        } else if (isset($_POST['add_to_cart'])) {
             $qty = $_POST['num_order'];
         }
 
@@ -86,23 +92,22 @@ class Cart extends Controller
 
             $detail_cart = $this->cart->getDetailCart(0, $id_cart, $id_pro);
             $id_detail_cart = $detail_cart[0]['id'];
-            
+
             if (isset($_POST['num_order']) && $detail_cart) {
                 $qty = $_POST['num_order'] + $detail_cart[0]['qty'];
                 // show_array($detail_cart);
                 $price = $detail_cart[0]['price'];
                 $sub_total = $price * $qty;
-                if($id_detail_cart > 0) {
+                if ($id_detail_cart > 0) {
                     $this->cart->updateDetailCart($id_detail_cart, $qty, $sub_total);
                 }
             } else if (isset($_POST['num_order'])) {
                 $qty = $_POST['num_order'];
+                $sub_total = $price * $qty;
                 $this->cart->insertDetailCart($id_cart, $id_pro, $image, $name, $price, $qty, $sub_total, $dated_at);
             }
             // show_array($detail_cart);
-
-
-            
+            echo 1;
         } else {
             $_SESSION['cart']['buy'][$id] = array(
                 'id' => $product['id'],
@@ -119,7 +124,6 @@ class Cart extends Controller
         $this->update_cart();
 
         // redirectTo('cart');
-        redirectTo('cart');
     }
 
     public function update_cart()
@@ -137,6 +141,7 @@ class Cart extends Controller
                 'num_order' => $num_order,
                 'total' => $total,
             );
+            echo 1;
         }
 
         if (isset($_SESSION['user']) && $_SESSION['user']['id']) {
@@ -149,6 +154,11 @@ class Cart extends Controller
                 $total += $item['sub_total'];
             }
             $this->cart->updateCart($id_user, $num_order, $total);
+            $total = array(
+                'total' => $total,
+
+            );
+            print_r($total);
         }
     }
 
@@ -169,7 +179,7 @@ class Cart extends Controller
         }
         if (isset($_SESSION['user']) && $_SESSION['user']['id']) {
             $detail_cart = $this->cart->getDetailCart($id, 0, 0);
-            if (isset($detail_cart) && !empty($detail_cart) ) {
+            if (isset($detail_cart) && !empty($detail_cart)) {
                 // show_array($detail_cart);
                 $this->cart->deleteDetailCart($id, 0);
             }
@@ -194,21 +204,44 @@ class Cart extends Controller
             }
 
             $this->update_cart();
-            redirectTo('cart');
+            // redirectTo('cart');
         }
 
-        if (isset($_SESSION['user']) && isset($_POST['qty'])) {
+        // if (isset($_SESSION['user']) && isset($_POST['qty']) && isset($_POST['id'])) {
 
-            foreach ($_POST['qty'] as $id => $qty) {
+            // foreach ($_POST['qty'] as $id => $qty) {
 
-                $detailCart = $this->cart->getOneDetailCart($id);
-                // show_array($_POST);
+            //     $detailCart = $this->cart->getOneDetailCart($id);
+            //     $price = $detailCart['price'];
+            //     $sub_total = $qty * $price;
+            //     $this->cart->updateDetailCart($id, $qty, $sub_total);
+            // }
+            if(isset($_SESSION['user']) && isset($_POST['qty']) && isset($_POST['id'])){
+                $detailCart = $this->cart->getOneDetailCart($_POST['id']);
                 $price = $detailCart['price'];
-                $sub_total = $qty * $price;
-                $this->cart->updateDetailCart($id, $qty, $sub_total);
+                $sub_total = $_POST['qty'] * $price;
+                $this->cart->updateDetailCart($_POST['id'], $_POST['qty'], $sub_total);
+                // $this->update_cart();
+                if (isset($_SESSION['user']) && $_SESSION['user']['id']) {
+                    $id_user = $_SESSION['user']['id'];
+                    $num_order = 0;
+                    $total = 0;
+                    $detailCart = $this->cart->getAllDetailCart($id_user);
+                    foreach ($detailCart as $item) {
+                        $num_order += $item['qty'];
+                        $total += $item['sub_total'];
+                    }
+                    $this->cart->updateCart($id_user, $num_order, $total);
+                    $total = array(
+                        'sub_total' => $sub_total,
+                        'total' => $total,
+        
+                    );
+                    print_r(Json_encode($total));
+                }
             }
-            $this->update_cart();
-            redirectTo('cart');
-        }
+
+            // redirectTo('cart');
+        // }
     }
 }

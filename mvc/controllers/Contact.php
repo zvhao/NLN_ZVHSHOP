@@ -2,6 +2,11 @@
 
 class Contact extends Controller
 {
+    private $products;
+    private $categories;
+    private $users;
+    private $cart;
+    private $contacts;
     function __construct()
     {
         $this->products = $this->model('ProductModel');

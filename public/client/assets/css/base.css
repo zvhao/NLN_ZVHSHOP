@@ -11,11 +11,12 @@
 }
 
 :root {
-    --main-color: #037dff;
-    --primary-color: #E95211;
+    --main-color: #2779a7;
+    --primary-color: #FF9398;
     --text-color: #231f20;
     --white-color: #fff;
     --border-radius: 5px;
+    --btn-main-hover: #037dffc1;
 
 
 
@@ -79,7 +80,7 @@ li {
 }
 
 .btn-view:hover {
-    background-color: #bfdbfe;
+    background-color: var(--primary-color);
 
 }
 
@@ -136,12 +137,13 @@ a,
 .border-main {
     border: 2px solid var(--main-color);
     border-radius: var(--border-radius) !important;
+    
 }
 
 .outline-main:hover {
     border: 2px solid var(--main-color);
     background-color: var(--main-color);
-    color: var(--white-color);
+    color: var(--white-color) !important;
 }
 
 /* scroll */
@@ -171,6 +173,10 @@ a,
 .text-color-main {
     color: var(--main-color) !important;
 }
+
+/* .text-color-main:hover {
+    color: var(--white-color) !important;
+} */
 .text-color-primary {
     color: var(--primary-color) !important;
 }

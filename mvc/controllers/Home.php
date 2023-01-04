@@ -4,6 +4,7 @@ class Home extends Controller
 {
     private $products;
     private $categories;
+    private $cart;
 
     function __construct()
     {

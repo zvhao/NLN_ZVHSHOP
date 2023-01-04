@@ -2,6 +2,11 @@
 
 class DetailProduct extends Controller
 {
+    private $products;
+    private $categories;
+    private $cart;
+    private $bills;
+    private $comment;
     function __construct()
     {
         $this->products = $this->model('ProductModel');
@@ -60,7 +65,7 @@ class DetailProduct extends Controller
             'page' => 'detail_product',
             'title' => 'Chi tiết sản phẩm',
             'css' => ['base', 'main'],
-            'js' => ['main'],
+            'js' => ['main', 'detail_product'],
             'products' => $products,
             'categories' => $categories,
             'product' => $product,

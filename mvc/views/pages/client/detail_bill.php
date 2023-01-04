@@ -26,7 +26,7 @@ if (empty($_SESSION['user']['gr_id'])) {
 				<p>Địa chỉ nhận hàng: <span class="text-color-main"><?= $data['bill']['address'] ?></span> </p>
 				<p>Ghi chú: <?= $data['bill']['note']?:'...' ?></p>
 				<h2 class="mt-5">Nếu có thắc mắc, vấn đề về đơn hàng, hãy 
-			<a class="btn btn-primary fs-4" href="<?= _WEB_ROOT . '/contact' ?>">LIÊN HỆ</a>
+			<a class="btn btn-main fs-4" href="<?= _WEB_ROOT . '/contact' ?>">LIÊN HỆ</a>
 		</h2>
 			</div>
 			<div class="col-6">

@@ -1489,7 +1489,7 @@ a.header-heading-product:hover {
 }
 
 .form .button button:hover {
-    background-color: #037dffc1;
+    background-color: var(--btn-main-hover);
 }
 
 .form .login-signup {
@@ -1742,12 +1742,12 @@ a.google {
 }
 
 .active-cate {
-    color: var(--white-color);
+    color: var(--white-color) !important;
     background-color: var(--main-color);
 }
 
 .active-cate:hover {
-    color: var(--white-color);
+    color: var(--white-color) !important;
 
 }
 
@@ -1872,7 +1872,7 @@ a.google {
     font-size: 1.4rem;
 }
 
-#num-order {
+.num-order {
     width: 50px;
     height: 38px;
     margin: 0 20px;
@@ -1895,8 +1895,10 @@ a.google {
     color: var(--white-color);
 }
 
+
 .add-to-cart:hover {
-    background-color: #0303ff;
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
     color: var(--white-color);
 
 
@@ -1971,7 +1973,7 @@ a.google {
     opacity: 0;
 } */
 
-.rating label .icon {
+/* .rating label .icon {
     float: left;
     color: transparent;
 }
@@ -1985,7 +1987,7 @@ a.google {
 .rating:not(:hover) label input:checked~.icon,
 .rating:hover label:hover input~.icon {
     color: #037dff;
-}
+} */
 
 /* .rating label input:focus:not(:checked)~.icon:last-child {
     color: #000;

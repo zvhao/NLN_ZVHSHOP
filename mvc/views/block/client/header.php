@@ -47,11 +47,7 @@
                     <div class="header-item header-account">
                         <a href="#" class="a-header-right header-account-link">
                             <span class="box-icon">
-                                <img class=" rounded-circle" src="<?php if (isset($_SESSION['user']) && !empty($_SESSION['user']) && !empty($_SESSION['user']['avatar'])) {
-                                                                        echo _WEB_ROOT . '/upload/avt/' . $_SESSION['user']['avatar'];
-                                                                    } else {
-                                                                        echo _PATH_IMG_PUBLIC . '/profile.jpg';
-                                                                    } ?> " alt="" style="width: 30px; height: 30px; max-width: 100%; object-fit: cover; object-position: center; margin-bottom: 5px;">
+                                <?= avatarHeader() ?>
 
                             </span>
                             <span class="item-title">TÀI KHOẢN</span>
@@ -146,11 +142,11 @@
                                     <?php
                                     if (!empty($_SESSION['user']['gr_id'])) {
                                     ?>
-                                        <a class="outline-main fs-4 p-2 me-4" href="<?= _WEB_ROOT . '/bill/show_bill' ?>">Đơn hàng của tôi</a>
+                                        <a class="text-color-main outline-main fs-4 p-2 me-4" href="<?= _WEB_ROOT . '/bill/show_bill' ?>">Đơn hàng của tôi</a>
                                     <?php
                                     }
                                     ?>
-                                    <a class="outline-main fs-4 p-2" href="<?= _WEB_ROOT . '/cart' ?>">Xem giỏ hàng</a>
+                                    <a class="text-color-main outline-main fs-4 p-2" href="<?= _WEB_ROOT . '/cart' ?>">Xem giỏ hàng</a>
 
                                 </div>
 
